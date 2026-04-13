@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+/* PAGE SCROLL SYSTEM */
+.page-container {
+  height: calc(100vh - 60px);       
+  overflow-y: auto;                 
+  background: #121212;
+    margin-left: 220px;     
+  min-height: 100vh;
+}
+.home-page {
+    min-height: 100vh;
+    background: #000;
+    padding-top: 60px; 
+}
+
+/* FULL SCREEN IMAGE BELOW NAVBAR */
+.home-hero {
+   min-height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* DARK OVERLAY + PERFECT CENTER TEXT */
+.home-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.home-overlay h1 {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.home-overlay p {
+    font-size: 18px;
+    opacity: 0.9;
+}

@@ -1,0 +1,82 @@
+.update-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121212;
+}
+
+.update-card {
+  width: 420px;
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+  color: white;
+}
+
+.update-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update-card input,
+.update-card select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #2c2c2c;
+  color: white;
+}
+
+.update-card input::placeholder {
+  color: #aaa;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-update {
+  flex: 1;
+  background: #1976d2;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn-update:hover {
+  background: #1565c0;
+  transform: scale(1.05);
+}
+
+.btn-cancel {
+  flex: 1;
+  background: #555;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #777;
+}
+
+.success-msg {
+  background: #2e7d32;
+  color: #c8e6c9;
+  padding: 8px;
+  text-align: center;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}

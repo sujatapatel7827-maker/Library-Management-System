@@ -1,0 +1,114 @@
+.student-details-wrapper {
+  padding: 30px;
+  color: white;
+}
+
+.page-title {
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;   /* 🔥 scroll enable */
+}
+/* TABLE */
+.student-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.student-table th,
+.student-table td {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.student-table th {
+  background: #1f2937;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.student-table tr {
+  border-bottom: 1px solid #374151;
+}
+
+.student-table tr:hover {
+  background: #1f2937;
+}
+
+/* STATUS */
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #16a34a;
+}
+
+.status.expired {
+  background: #dc2626;
+}
+
+/* ACTION BUTTONS */
+.action-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-view,
+.btn-edit {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-view {
+  background: #38bdf8;
+}
+
+.btn-edit {
+  background: #facc15;
+}
+.btn-view:hover,
+.btn-edit:hover {
+  transform: scale(1.1);
+}
+/* FILTER BAR */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #374151;
+  background: #1f2937;
+  color: #e5e7eb;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: #2563eb;
+}
+
+.filter-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}

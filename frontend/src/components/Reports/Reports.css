@@ -1,0 +1,105 @@
+
+.reports-page {
+  padding: 30px 60px;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  min-height: 100vh;
+  color: white;
+}
+
+.reports-page h1 {
+  text-align: center;
+  margin-bottom:40px;
+  font-size:34px;
+  font-weight: 700;
+  background: linear-gradient(to right, #38bdf8, #c026d3);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* GRID CENTER – 5 PER ROW */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:20px;
+  width:100%;
+  margin: 0 auto;
+}
+
+/* CARD */
+.icon-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);             
+  border-radius: 18px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 110px;
+  box-sizing: border-box;
+  transition: all 0.35s ease;   
+}
+
+.icon-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.25);
+}
+
+.icon-box {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px; 
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+
+  box-shadow: 0 10px 25px rgba(56,189,248,0.4);
+}
+
+.card-info h3 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.card-info p {
+  font-size: 13px;
+  color: #94a3b8;
+}
+.reports-page {
+  position: relative;
+  padding: 30px;
+  background: radial-gradient(circle at top, #020617, #000);
+  min-height: 100vh;
+  width:100%;
+  max-width:100%;
+  overflow-x: hidden;
+}
+
+.reports-page::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #38bdf8;
+  filter: blur(140px);
+  opacity: 0.2;
+  top: -100px;
+  right: -100px;
+}
+
+@media (max-width: 768px) {
+  .reports-page h1 {
+    font-size: 24px;
+  }
+
+  .icon-box {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+}
+
+
+

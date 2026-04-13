@@ -1,0 +1,199 @@
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(180deg, #1e1e1e, #161616);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.45);
+}
+
+/* ===== LOGO ===== */
+.logo {
+  color: #ffffff;
+  margin-bottom: 35px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===== NAV LINKS CONTAINER ===== */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===== NAV LINK BASE ===== */
+.nav-links a {
+  position: relative;
+  color: #cfcfcf;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  overflow: hidden;
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+/* ===== LEFT BORDER (HOVER ANIMATION) ===== */
+.nav-links a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  background: #1976d2;
+  transform: translateY(-50%);
+  transition: height 0.3s ease;
+}
+
+/* ===== HOVER EFFECT ===== */
+.nav-links a:hover {
+  background: rgba(5, 1, 21, 0.901);
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.nav-links a:hover::before {
+  height: 70%;
+}
+
+/* ===== ACTIVE LINK ===== */
+.nav-links a.active {
+  background: rgba(6, 18, 186, 0.704);
+  color: #ffffff;
+  box-shadow: inset 3px 0 0 #1976d2;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 230px;
+  height: 100vh;
+  padding: 20px;
+
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(12px);           /* 👈 glass effect */
+  border-right: 1px solid rgba(255,255,255,0.05);
+
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 40px;
+
+  background: linear-gradient(to right, #38bdf8, #c026d3);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ===== LINK BASE ===== */
+.nav-links a {
+  position: relative;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* 🔥 LIGHT SWEEP EFFECT */
+.nav-links a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(56, 189, 248, 0.2),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.3s;
+}
+
+/* ===== HOVER ===== */
+.nav-links a:hover {
+  transform: translateX(6px);
+  color: #fff;
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.nav-links a:hover::before {
+  opacity: 1;
+}
+
+/* ===== ACTIVE LINK ===== */
+.nav-links a.active {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-weight: 600;
+
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+/* ===== SUB LINKS ===== */
+.sub-links {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sub-links a {
+  font-size: 14px;
+  padding: 8px 12px;
+  opacity: 0.85;
+}
+
+/* ===== SCROLL FIX ===== */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+}

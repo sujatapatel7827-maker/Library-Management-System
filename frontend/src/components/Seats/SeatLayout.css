@@ -1,0 +1,131 @@
+body {
+  overflow-x: hidden;
+}
+/* Page Center */
+.seat-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  margin: auto;
+  
+}
+
+/* Heading Center */
+.seat-heading {
+  text-align: center;
+  font-size: 26px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+/*  Circle */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.green {
+  background-color: #2ecc71;
+}
+
+.dot.red {
+  background-color: #e63946;
+}
+
+/*  SEAT CARD CENTER */
+.seat-card-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.seat-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 18px;
+  width: 100%;
+  max-width:900px;
+}
+
+/* Seat Card */
+.seat-card {
+  padding: 16px 12px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Colors */
+.seat-card.green {
+  background: #2ecc71;
+}
+
+.seat-card.red {
+  background: #e63946;
+}
+
+/* Text */
+.seat-number {
+  font-size: 15px;
+}
+
+.student-name {
+  margin-top: 8px;
+  font-size: 13px;
+  background: rgba(0,0,0,0.25);
+  padding: 4px;
+  border-radius: 6px;
+}
+
+/* Bottom Buttons */
+.bottom-center {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.seat-controls button {
+  background: #1f2937;
+  color: white;
+  border: none;
+  padding: 6px 18px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.seat-controls button:hover {
+  background: #374151;
+}
+@media (max-width: 768px) {
+  .seat-page {
+    margin-left: 0;   
+  }
+.seat-controls {
+    gap: 8px;
+  }
+  .seat-card-container {
+    max-width: 100%;
+  }
+}
