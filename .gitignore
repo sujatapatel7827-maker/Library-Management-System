@@ -29,13 +29,25 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+# ===== Backend (Spring Boot) =====
+LMS_Project/target/
+*.log
+*.class
 
-# Frontend
+# ===== Frontend =====
 frontend/node_modules/
 frontend/build/
 frontend/dist/
 
-# Env
+# ===== Env (secret files) =====
 .env
+
+# ===== IDE files =====
+.vscode/
+.idea/
+.settings/
+.project
+.classpath
+
+# ===== System files =====
+.DS_Store
