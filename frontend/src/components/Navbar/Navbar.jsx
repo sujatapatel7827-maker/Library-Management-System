@@ -1,9 +1,20 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./Navbar.css";
-import { FaHome, FaChartBar, FaUser, FaList, FaFileAlt, FaChair } from "react-icons/fa";
+import { FaHome, FaChartBar, FaUser, FaList, FaFileAlt, FaChair, FaSun, FaMoon } from "react-icons/fa";
 
 export default function Navbar() {
   const location = useLocation();
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "dark" ? "light" : "dark"));
+  };
 
   // ✅ Dashboard section ke ALL routes
   const isDashboardActive =
@@ -15,6 +26,7 @@ export default function Navbar() {
     <div className="sidebar">
       <h2 className="logo">Admin Panel</h2>
 
+
       <div className="nav-links">
         <NavLink to="/home" end>
           Home  <FaHome className="nav-icon" />
@@ -25,21 +37,19 @@ export default function Navbar() {
         </NavLink>
 
         {/* 👇 Submenu ONLY for dashboard section */}
-        {isDashboardActive && (
-          <div className="sub-links">
-            <NavLink to="/home/student-correction">
-              Student Correction  <FaUser className="nav-icon" />
-            </NavLink>
+        <div className="sub-links">
+          <NavLink to="/home/student-correction">
+            Student Correction  <FaUser className="nav-icon" />
+          </NavLink>
 
-            <NavLink to="/home/student-details">
-              Student Details  <FaList className="nav-icon" />
-            </NavLink>
+          <NavLink to="/home/student-details">
+            Student Details  <FaList className="nav-icon" />
+          </NavLink>
 
-            <NavLink to="/home/reports">
-              Reports & Analytics  <FaFileAlt className="nav-icon" />
-            </NavLink>
-          </div>
-        )}
+          <NavLink to="/home/reports">
+            Reports & Analytics  <FaFileAlt className="nav-icon" />
+          </NavLink>
+        </div>
 
         <NavLink to="/home/booking">
           Booking Form  <FaFileAlt className="nav-icon" />

@@ -1,12 +1,16 @@
 import "./BookingForm.css";
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import api from "../../api";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import myImage from "../../assets/cute-cartoon-girl.png";
 
 export default function BookingForm({ students, setStudents }) {
+  const navigate = useNavigate();
+  const { search } = useLocation();
+
   const [booking, setBooking] = useState({
     name: "",
+    email: "",
     gender: "",
     phoneNo: "",
     studentFees: "",
@@ -20,96 +24,59 @@ export default function BookingForm({ students, setStudents }) {
   });
 
   const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState("");
+
+  // Read query parameters to pre-fill seat information from Seat Layout map
+  useEffect(() => {
+    const queryParams = new URLSearchParams(search);
+    const seatNoParam = queryParams.get("seatNo");
+    const seatTypeParam = queryParams.get("seatType");
+    if (seatNoParam) {
+      setBooking((prev) => ({
+        ...prev,
+        seatNo: seatNoParam,
+        seatType: seatTypeParam || ""
+      }));
+    }
+  }, [search]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setErrorMsg("");
     console.log("FORM SUBMITTED", booking);
 
-  let TOTAL_FEES = 0;
+    let TOTAL_FEES = 0;
+    if (booking.seatType === "Reserved") TOTAL_FEES = 5000;
+    else if (booking.seatType === "Floating") TOTAL_FEES = 4000;
+    else if (booking.seatType === "Night") TOTAL_FEES = 3000;
 
-if (booking.seatType === "Reserved") TOTAL_FEES = 5000;
-else if (booking.seatType === "Floating") TOTAL_FEES = 4000;
-else if (booking.seatType === "Night") TOTAL_FEES = 3000;
+    let paid = Number(booking.studentFees) || 0;
+    let paymentStatus = paid >= TOTAL_FEES ? "Paid" : "Pending";
 
-let paid = Number(booking.studentFees) || 0;
-
-let paymentStatus = paid >= TOTAL_FEES ? "Paid" : "Pending";
-
-    // STUDENT DATA
-    const studentData = {
-      name: booking.name,
-      mobile: booking.phoneNo,
-      fees: booking.studentFees,
-      seatType: booking.seatType // important
-    };
+    const studentData = { ...booking, status: paymentStatus };
 
     try {
-      //SAVE STUDENT
-      const res = await axios.post(
-        "http://localhost:5000/api/students",
-        studentData,
-        {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-
+      // SAVE STUDENT using central api client
+      const res = await api.post("/api/students", studentData);
       const savedStudent = res.data;
 
-      // BOOKING DATA
-      const bookingData = {
-        seatNo: Number(booking.seatNo || 1), 
-        startDate: booking.startDate,
-        expiryDate: booking.endDate,
-        days: 30,
-        status: paymentStatus,
-        seatType: booking.seatType, 
-        student: {
-          id: savedStudent.id
-        }
-      };
-
-      // SAVE BOOKING
-      await axios.post(
-        "http://localhost:5000/api/bookings",
-        bookingData,
-        {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-
-      console.log("Booking Saved ");
+      console.log("Student and Booking Saved successfully");
 
       // frontend update
-      const newData = {
-        ...booking,
-        status: paymentStatus,
-        id: Date.now(),
-      };
+      setStudents(prev => [...prev, savedStudent]);
 
-      setStudents(prev => [...prev, newData]);
-
-      localStorage.setItem(
-        "students",
-        JSON.stringify([...students, newData])
-      );
+      const updatedStudents = [...students, savedStudent];
+      localStorage.setItem("students", JSON.stringify(updatedStudents));
 
       setSuccess(true);
-
       setTimeout(() => {
         navigate("/home/dashboard");
       }, 1500);
 
     } catch (error) {
-      console.error("FULL ERROR:", error);
-      console.log("STATUS:", error?.response?.status);
-      console.log("DATA:", error?.response?.data);
-      alert("Data save nahi hua ");
+      console.error("Booking failed:", error);
+      const message = error.response?.data?.message || "Data save nahi hua. Seat/Locker check constraint check karein.";
+      setErrorMsg(message);
     }
   };
 
@@ -134,11 +101,27 @@ let paymentStatus = paid >= TOTAL_FEES ? "Paid" : "Pending";
 
           <form onSubmit={handleSubmit}>
 
+            {errorMsg && (
+              <p style={{ color: "#ff6b6b", textAlign: "center", fontWeight: "bold", margin: "10px 0" }}>
+                {errorMsg}
+              </p>
+            )}
+
             <input
               placeholder="Student Name"
               value={booking.name}
               onChange={(e) =>
                 setBooking({ ...booking, name: e.target.value })
+              }
+              required
+            />
+
+            <input
+              type="email"
+              placeholder="Student Email"
+              value={booking.email}
+              onChange={(e) =>
+                setBooking({ ...booking, email: e.target.value })
               }
               required
             />

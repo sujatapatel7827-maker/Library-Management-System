@@ -197,3 +197,56 @@
 .sidebar::-webkit-scrollbar-thumb {
   background: #38bdf8;
 }
+
+.theme-toggle-sidebar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-sidebar-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Base Light Mode Adaptations for sidebar */
+body.light .sidebar {
+  background: rgba(255, 255, 255, 0.85);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+body.light .sidebar .logo {
+  background: linear-gradient(to right, #0284c7, #7c3aed);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+body.light .theme-toggle-sidebar-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #374151;
+}
+body.light .theme-toggle-sidebar-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+body.light .nav-links a {
+  color: #4b5563;
+}
+body.light .nav-links a:hover {
+  color: #111827;
+  background: rgba(0, 0, 0, 0.04);
+}
+body.light .nav-links a.active {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+}
+

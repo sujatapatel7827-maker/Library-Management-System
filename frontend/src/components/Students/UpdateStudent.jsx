@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import api from "../../api";
 import "./UpdateStudent.css";
 
 export default function UpdateStudent({ students, setStudents }) {
@@ -7,41 +8,52 @@ export default function UpdateStudent({ students, setStudents }) {
   const navigate = useNavigate();
 
   const oldStudent = students.find(
-    (s) => s.id === Number(id)
+    (s) => s.id == id
   );
 
   const [data, setData] = useState(oldStudent);
   const [success, setSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   if (!oldStudent) {
     return <p style={{ color: "white" }}>Student not found</p>;
   }
 
-  const updateStudent = () => {
+  const updateStudent = async () => {
+    setErrorMsg("");
     // STATUS LOGIC
-    const TOTAL_FEES = 5000;
+    let TOTAL_FEES = 0;
+    if (data.seatType === "Reserved") TOTAL_FEES = 5000;
+    else if (data.seatType === "Floating") TOTAL_FEES = 4000;
+    else if (data.seatType === "Night") TOTAL_FEES = 3000;
+
     const status =
       Number(data.studentFees) >= TOTAL_FEES
         ? "Paid"
         : "Pending";
 
-    const updatedStudents = students.map((s) =>
-      s.id === Number(id)
-        ? { ...data, status, id: s.id }
-        : s
-    );
+    const studentToUpdate = { ...data, status };
 
-    setStudents(updatedStudents);
-    localStorage.setItem(
-      "students",
-      JSON.stringify(updatedStudents)
-    );
+    try {
+      const res = await api.put(`/api/students/${id}`, studentToUpdate);
+      const savedStudent = res.data;
 
-    setSuccess(true);
+      const updatedStudents = students.map((s) =>
+        s.id == id ? savedStudent : s
+      );
 
-    setTimeout(() => {
-      navigate("/home/student-correction");
-    }, 1200);
+      setStudents(updatedStudents);
+      localStorage.setItem("students", JSON.stringify(updatedStudents));
+      setSuccess(true);
+
+      setTimeout(() => {
+        navigate("/home/student-correction");
+      }, 1200);
+    } catch (error) {
+      console.error("Update failed:", error);
+      const message = error.response?.data?.message || "Update fail ho gaya. Details check karein.";
+      setErrorMsg(message);
+    }
   };
 
   return (
@@ -53,11 +65,26 @@ export default function UpdateStudent({ students, setStudents }) {
           <p className="success-msg">✅ Update successful</p>
         )}
 
+        {errorMsg && (
+          <p className="error-msg" style={{ color: "#ff6b6b", textAlign: "center", fontWeight: "bold", marginBottom: "15px" }}>
+            {errorMsg}
+          </p>
+        )}
+
         <input
           placeholder="Name"
           value={data.name}
           onChange={(e) =>
             setData({ ...data, name: e.target.value })
+          }
+        />
+
+        <input
+          placeholder="Email"
+          type="email"
+          value={data.email || ""}
+          onChange={(e) =>
+            setData({ ...data, email: e.target.value })
           }
         />
 

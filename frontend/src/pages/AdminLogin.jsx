@@ -1,21 +1,42 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./AdminLogin.css";
 
-export default function AdminLogin({ setIsLogin }) {
+export default function AdminLogin() {
   const navigate = useNavigate();
 
   const [data, setData] = useState({
     username: "",
     password: ""
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    if (data.username === "admin" && data.password === "1234") {
+  const handleLogin = async () => {
+    if (!data.username || !data.password) {
+      setError("Please fill in all fields");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          username: data.username,
+          password: data.password
+        }
+      );
+      const token = response.data.token;
+      localStorage.setItem("token", token);
       localStorage.setItem("isLogin", "true");
-      navigate("/home"); 
-    } else {
-      alert("Invalid Username or Password");
+      navigate("/home/dashboard");
+    } catch (err) {
+      console.error("Login failed:", err);
+      setError(err.response?.data?.message || "Invalid Username or Password");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -24,12 +45,15 @@ export default function AdminLogin({ setIsLogin }) {
       <div className="login-card">
         <h2>Admin Login</h2>
 
+        {error && <p className="login-error-msg" style={{ color: "#ff6b6b", marginBottom: "15px", fontSize: "0.9rem" }}>{error}</p>}
+
         <input
           placeholder="Username"
           value={data.username}
           onChange={(e) =>
             setData({ ...data, username: e.target.value })
           }
+          disabled={loading}
         />
 
         <input
@@ -39,9 +63,15 @@ export default function AdminLogin({ setIsLogin }) {
           onChange={(e) =>
             setData({ ...data, password: e.target.value })
           }
+          disabled={loading}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleLogin();
+          }}
         />
 
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleLogin} disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
       </div>
     </div>
   );

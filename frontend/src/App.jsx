@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import api from "./api";
 
 import AdminLogin from "./pages/AdminLogin";
 import Home from "./pages/Home";
@@ -21,13 +22,39 @@ const RequireAuth = ({ children }) => {
 
 function App() {
   const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedStudents = JSON.parse(localStorage.getItem("students"));
-    if (savedStudents) {
-      setStudents(savedStudents);
-    }
+    const fetchStudents = async () => {
+      try {
+        const response = await api.get("/api/students");
+        setStudents(response.data);
+      } catch (error) {
+        console.error("Error fetching students:", error);
+        // Fallback to localStorage if API fails
+        const savedStudents = JSON.parse(localStorage.getItem("students"));
+        if (savedStudents) setStudents(savedStudents);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStudents();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="shimmer-wrapper">
+        <div className="skeleton-box title"></div>
+        <div className="skeleton-box card"></div>
+        <div style={{ display: "flex", gap: "20px", width: "100%", maxWidth: "800px" }}>
+          <div className="skeleton-box" style={{ height: "100px", flex: 1 }}></div>
+          <div className="skeleton-box" style={{ height: "100px", flex: 1 }}></div>
+        </div>
+        <div className="skeleton-box" style={{ height: "80px" }}></div>
+        <div className="skeleton-box" style={{ height: "80px" }}></div>
+      </div>
+    );
+  }
 
   return (
     <Routes>
@@ -44,7 +71,7 @@ function App() {
         }
       >
         {/* DASHBOARD */}
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard students={students} />} />
 
         {/* DASHBOARD OPTIONS */}
         <Route

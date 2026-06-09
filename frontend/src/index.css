@@ -5,10 +5,187 @@
   box-sizing: border-box;
 }
 
-html,body {
-  background-color: #121212;
-  color: #e0e0e0;
-  font-family: Arial, sans-serif;
+:root {
+  /* Default Dark Mode Variables */
+  --bg-color: #0f172a;
+  --bg-gradient: radial-gradient(circle at top, #0f172a, #020617);
+  --panel-bg: rgba(31, 41, 55, 0.6);
+  --text-color: #f3f4f6;
+  --text-muted: #9ca3af;
+  --border-color: rgba(255, 255, 255, 0.05);
+  --primary-color: #10b981;
+  --accent-color: #3b82f6;
+}
+
+body.light {
+  /* Light Mode Variables */
+  --bg-color: #f3f4f6;
+  --bg-gradient: radial-gradient(circle at top, #f9fafb, #e5e7eb);
+  --panel-bg: rgba(255, 255, 255, 0.85);
+  --text-color: #111827;
+  --text-muted: #4b5563;
+  --border-color: rgba(0, 0, 0, 0.05);
+  --primary-color: #059669;
+  --accent-color: #2563eb;
+}
+
+html, body {
+  background: var(--bg-gradient);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Inter", "Roboto", "Segoe UI", sans-serif;
   height: 100%;
-  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Common Dark/Light adaptations across page wrappers */
+body.light .dashboard-hero,
+body.light .seat-page,
+body.light .booking-wrapper,
+body.light .update-wrapper,
+body.light .delete-wrapper,
+body.light .student-correction-wrapper {
+  background: var(--bg-gradient) !important;
+  color: var(--text-color) !important;
+}
+
+body.light .dashboard-welcome-footer p,
+body.light .hero-content p,
+body.light .watchlist-table th,
+body.light .card-info h4,
+body.light .card-info p {
+  color: var(--text-muted) !important;
+}
+
+body.light .chart-box,
+body.light .analytics-card,
+body.light .watchlist-section,
+body.light .modal-content,
+body.light .student-card.horizontal,
+body.light .booking-card,
+body.light .update-card,
+body.light .delete-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light .watchlist-table td,
+body.light .watchlist-table th {
+  border-bottom-color: var(--border-color) !important;
+  color: var(--text-color);
+}
+
+body.light .watchlist-table th {
+  color: var(--text-muted);
+}
+
+body.light .chart-box h3,
+body.light .watchlist-header h3 {
+  border-bottom-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+body.light input,
+body.light select {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #111827 !important;
+}
+body.light input::placeholder {
+  color: #9ca3af !important;
+}
+
+body.light .btn-cancel,
+body.light .watchlist-action-btn {
+  background: rgba(0, 0, 0, 0.06) !important;
+  color: #374151 !important;
+}
+body.light .btn-cancel:hover,
+body.light .watchlist-action-btn:hover {
+  background: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Shimmering Skeleton Loader */
+.shimmer-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  justify-content: center;
+  align-items: center;
+}
+
+.skeleton-box {
+  width: 100%;
+  max-width: 800px;
+  height: 40px;
+  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.skeleton-box.card {
+  height: 150px;
+  border-radius: 16px;
+}
+
+.skeleton-box.title {
+  height: 30px;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+@keyframes loadingShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Global scrollbar adjustments */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+body.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+body.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Global Responsive Modal Fix */
+.modal-overlay {
+  padding: 20px;
+}
+
+.modal-content {
+  max-height: 85vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar defaults inside modal if desired, or make them clean */
+.modal-content::-webkit-scrollbar {
+  width: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+body.light .modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
 }

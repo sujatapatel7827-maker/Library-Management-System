@@ -7,7 +7,7 @@ export default function ViewStudent({ students }) {
 
   // 🔹 Student find
   const student = students.find(
-    (s) => s.id === Number(id)
+    (s) => s.id == id
   );
 
   if (!student) {
@@ -41,6 +41,7 @@ if (paidFees >= TOTAL_FEES) status = "Paid";
           <p><b>Name:</b> {student.name}</p>
           <p><b>Gender:</b> {student.gender}</p>
           <p><b>Mobile:</b> {student.phoneNo}</p>
+          <p><b>Email:</b> {student.email || "Not Provided"}</p>
 
           <p><b>Seat Type:</b> {student.seatType}</p>
           {student.seatNo && (

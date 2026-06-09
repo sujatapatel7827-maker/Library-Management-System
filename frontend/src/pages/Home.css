@@ -11,47 +11,240 @@ body,
 }
 /* PAGE SCROLL SYSTEM */
 .page-container {
-  height: calc(100vh - 60px);       
+  height: 100vh;       
   overflow-y: auto;                 
-  background: #121212;
-    margin-left: 220px;     
+  background: var(--bg-gradient);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin-left: 230px;     
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.home-page {
-    min-height: 100vh;
-    background: #000;
-    padding-top: 60px; 
-}
-
-/* FULL SCREEN IMAGE BELOW NAVBAR */
-.home-hero {
-   min-height: 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
+/* --- Quick Start Console Layout Styles --- */
+.home-welcome-console {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* DARK OVERLAY + PERFECT CENTER TEXT */
-.home-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
+.welcome-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  background: linear-gradient(to right, #10b981, #3b82f6);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
 }
 
-.home-overlay h1 {
-    font-size: 42px;
-    margin-bottom: 12px;
+.welcome-header p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
 }
 
-.home-overlay p {
-    font-size: 18px;
-    opacity: 0.9;
+/* Cards Grid */
+.quick-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 10px;
 }
+
+/* Quick Start Card */
+.quick-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: transparent;
+  transition: background 0.3s;
+}
+
+.quick-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.quick-card:hover::before {
+  background: linear-gradient(to right, #10b981, #3b82f6);
+}
+
+.quick-card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.icon-analytics {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.icon-booking {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+.icon-map {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.icon-db {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.quick-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.quick-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.quick-card-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #10b981;
+  margin-top: 10px;
+  transition: gap 0.2s;
+}
+
+.quick-card:hover .quick-card-action {
+  gap: 12px;
+}
+
+.quick-card-action.info-only {
+  color: #f59e0b;
+}
+
+.welcome-console-footer {
+  margin-top: 20px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px dashed rgba(16, 185, 129, 0.25);
+  padding: 18px 24px;
+  border-radius: 12px;
+}
+
+.welcome-console-footer p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* Light mode specific console overrides */
+body.light .quick-card {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
+}
+body.light .welcome-console-footer {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+
+/* System Status Modal Specific Classes */
+.sys-modal-content {
+  max-width: 500px !important;
+}
+
+.status-item {
+  margin-bottom: 12px;
+}
+
+.status-item p {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
+}
+
+.status-badge-green,
+.status-badge-orange {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.status-badge-green {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.status-badge-orange {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.status-detail {
+  font-size: 0.85rem !important;
+  color: var(--text-muted) !important;
+  line-height: 1.4 !important;
+  margin-top: 4px;
+}
+
+.sys-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #3b82f6;
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+}
+
+.sys-action-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.sys-action-btn:active {
+  transform: translateY(0);
+}
+
+
+
