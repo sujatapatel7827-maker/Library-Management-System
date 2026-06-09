@@ -12,6 +12,7 @@ export default function AdminLogin() {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async () => {
     if (!data.username || !data.password) {
@@ -53,18 +54,27 @@ export default function AdminLogin() {
           disabled={loading}
         />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={data.password}
-          onChange={(e) =>
-            setData({ ...data, password: e.target.value })
-          }
-          disabled={loading}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleLogin();
-          }}
-        />
+        <div className="password-input-container">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={data.password}
+            onChange={(e) =>
+              setData({ ...data, password: e.target.value })
+            }
+            disabled={loading}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleLogin();
+            }}
+          />
+          <button 
+            className="toggle-password-btn" 
+            onClick={() => setShowPassword(!showPassword)}
+            type="button"
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
 
         <button onClick={handleLogin} disabled={loading}>
           {loading ? "Logging in..." : "Login"}
