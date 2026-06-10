@@ -206,14 +206,4 @@ body.light .modal-content::-webkit-scrollbar-thumb {
     -webkit-overflow-scrolling: touch !important;
     display: block !important;
   }
-  .seat-card-wrapper {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  .seat-card-container {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    min-width: max-content !important;
-    gap: 10px !important;
-  }
 }

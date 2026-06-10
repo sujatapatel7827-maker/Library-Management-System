@@ -562,3 +562,4 @@
     width: 220px !important;
   }
 }
+@media (max-width: 768px) { .top-nav { justify-content: center !important; margin-bottom: 20px !important; gap: 10px !important; flex-wrap: wrap !important; font-size: 13px !important; } .top-nav span { display: flex !important; flex-direction: column !important; align-items: center !important; padding: 5px !important; } .top-nav span svg { font-size: 20px !important; margin-bottom: 4px !important; } }

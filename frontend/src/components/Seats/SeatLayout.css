@@ -287,4 +287,4 @@ body {
   .seat-card-container {
     max-width: 100%;
   }
-}
+}@media (max-width: 768px) { .seat-card-container { grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important; gap: 8px !important; } .seat-card { padding: 10px 5px !important; } .seat-number { font-size: 13px !important; } .student-name { font-size: 10px !important; } }

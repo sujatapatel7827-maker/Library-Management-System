@@ -198,6 +198,7 @@ export default function BookingForm({ students, setStudents }) {
               }
             />
 
+            <div style={{textAlign: "left", color: "#aaa", fontSize: "14px", marginTop: "10px", marginBottom: "4px", paddingLeft: "4px"}}>Start Date</div>
             <input
               type="date"
               value={booking.startDate}
@@ -207,6 +208,7 @@ export default function BookingForm({ students, setStudents }) {
               required
             />
 
+            <div style={{textAlign: "left", color: "#aaa", fontSize: "14px", marginTop: "10px", marginBottom: "4px", paddingLeft: "4px"}}>End Date</div>
             <input
               type="date"
               value={booking.endDate}
