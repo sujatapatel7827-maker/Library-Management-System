@@ -29,7 +29,7 @@ export default function AdminLogin() {
       const token = response.data.token;
       localStorage.setItem("token", token);
       localStorage.setItem("isLogin", "true");
-      navigate("/home/dashboard");
+      navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
       setError(err.response?.data?.message || "Invalid Username or Password");

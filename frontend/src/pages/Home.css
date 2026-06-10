@@ -272,6 +272,12 @@ body.light .welcome-console-footer {
   .quick-cards-grid {
     grid-template-columns: 1fr !important;
   }
+  .quick-card {
+    padding: 15px !important;
+    box-sizing: border-box !important;
+    margin-bottom: 10px !important;
+    width: 100% !important;
+  }
   .hero-wrapper {
     flex-direction: column !important;
     text-align: center !important;
