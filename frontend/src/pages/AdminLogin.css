@@ -7,7 +7,8 @@
 }
 
 .login-card {
-  width: 360px;
+  width: 90%;
+  max-width: 360px;
   padding: 25px;
   background: #1e1e1e;
   border-radius: 10px;

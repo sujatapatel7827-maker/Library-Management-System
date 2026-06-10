@@ -520,3 +520,5 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+   
+ @media (max-width: 768px) { .dashboard-options, .student-correction-wrapper { padding: 10px; } .dashboard-card, .student-card.horizontal { width: 100%; padding: 15px; } .charts-container { grid-template-columns: 1fr; } .quick-cards-grid, .analytics-grid { grid-template-columns: 1fr; } .watchlist-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; } .hero-wrapper { flex-direction: column; text-align: center; } .hero-content h1 { font-size: 28px; } .hero-image img, .booking-image img { width: 220px; } }

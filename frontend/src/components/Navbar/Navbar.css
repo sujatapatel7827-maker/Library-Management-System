@@ -250,3 +250,56 @@ body.light .nav-links a.active {
   color: #fff;
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    border-right: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 9999;
+  }
+  .logo {
+    display: none;
+  }
+  .theme-toggle-sidebar-btn {
+    display: none;
+  }
+  .nav-links {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 5px;
+  }
+  .nav-links a {
+    padding: 8px 4px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+  }
+  .nav-links a::before {
+    display: none;
+  }
+  .nav-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+    margin-right: 0 !important;
+  }
+  .sub-links {
+    display: none;
+  }
+  body.light .sidebar {
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+}
