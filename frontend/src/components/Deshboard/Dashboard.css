@@ -535,11 +535,13 @@
     padding: 10px !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    flex-direction: column !important;
   }
   .dashboard-card, .student-card.horizontal {
     width: 100% !important;
     padding: 15px !important;
     box-sizing: border-box !important;
+    margin-bottom: 10px !important;
   }
   .charts-container {
     grid-template-columns: 1fr !important;

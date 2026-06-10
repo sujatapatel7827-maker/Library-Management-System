@@ -262,9 +262,15 @@ body.light .welcome-console-footer {
     padding-bottom: 80px !important;
     width: 100vw !important;
     overflow-x: hidden !important;
+    box-sizing: border-box !important;
   }
   .home-welcome-console {
-    padding: 20px !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+  .quick-cards-grid {
+    grid-template-columns: 1fr !important;
   }
   .hero-wrapper {
     flex-direction: column !important;
