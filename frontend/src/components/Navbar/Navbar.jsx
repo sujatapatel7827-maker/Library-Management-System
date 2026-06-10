@@ -29,34 +29,34 @@ export default function Navbar() {
 
       <div className="nav-links">
         <NavLink to="/home" end>
-          Home  <FaHome className="nav-icon" />
+          <span className="nav-text">Home</span>  <FaHome className="nav-icon" />
         </NavLink>
 
         <NavLink to="/home/dashboard">
-           Dashboard  <FaChartBar className="nav-icon" />
+           <span className="nav-text">Dashboard</span>  <FaChartBar className="nav-icon" />
         </NavLink>
 
         {/* 👇 Submenu ONLY for dashboard section */}
         <div className="sub-links">
           <NavLink to="/home/student-correction">
-            Student Correction  <FaUser className="nav-icon" />
+            <span className="nav-text">Student Correction</span>  <FaUser className="nav-icon" />
           </NavLink>
 
           <NavLink to="/home/student-details">
-            Student Details  <FaList className="nav-icon" />
+            <span className="nav-text">Student Details</span>  <FaList className="nav-icon" />
           </NavLink>
 
           <NavLink to="/home/reports">
-            Reports & Analytics  <FaFileAlt className="nav-icon" />
+            <span className="nav-text">Reports & Analytics</span>  <FaFileAlt className="nav-icon" />
           </NavLink>
         </div>
 
         <NavLink to="/home/booking">
-          Booking Form  <FaFileAlt className="nav-icon" />
+          <span className="nav-text">Booking Form</span>  <FaFileAlt className="nav-icon" />
         </NavLink>
 
         <NavLink to="/home/seats">
-          Seat Layout  <FaChair className="nav-icon" />
+          <span className="nav-text">Seat Layout</span>  <FaChair className="nav-icon" />
         </NavLink>
       </div>
     </div>

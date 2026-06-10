@@ -520,5 +520,45 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-   
- @media (max-width: 768px) { .dashboard-options, .student-correction-wrapper { padding: 10px; } .dashboard-card, .student-card.horizontal { width: 100%; padding: 15px; } .charts-container { grid-template-columns: 1fr; } .quick-cards-grid, .analytics-grid { grid-template-columns: 1fr; } .watchlist-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; } .hero-wrapper { flex-direction: column; text-align: center; } .hero-content h1 { font-size: 28px; } .hero-image img, .booking-image img { width: 220px; } }
+/* ========================================= */
+/*       RESPONSIVE DESIGN (TABLET & PHONE)  */
+/* ========================================= */
+
+@media (max-width: 1024px) {
+  .dashboard-card { width: 45%; }
+  .dashboard-options { flex-wrap: wrap; justify-content: center; }
+  .student-card.horizontal { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .dashboard-options, .student-correction-wrapper {
+    padding: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .dashboard-card, .student-card.horizontal {
+    width: 100% !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+  }
+  .charts-container {
+    grid-template-columns: 1fr !important;
+  }
+  .quick-cards-grid, .analytics-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .watchlist-table-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .hero-wrapper {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  .hero-content h1 {
+    font-size: 28px !important;
+  }
+  .hero-image img, .booking-image img {
+    width: 220px !important;
+  }
+}
