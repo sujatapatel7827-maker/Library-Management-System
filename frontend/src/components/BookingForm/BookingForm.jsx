@@ -8,20 +8,28 @@ export default function BookingForm({ students, setStudents }) {
   const navigate = useNavigate();
   const { search } = useLocation();
 
-  const [booking, setBooking] = useState({
-    name: "",
-    email: "",
-    gender: "",
-    phoneNo: "",
-    studentFees: "",
-    seatType: "",
-    seatNo: "",
-    lockerFees: "",
-    lockerNo: "",
-    startDate: "",
-    endDate: "",
-    status: ""
-  });
+  const getInitialBookingState = () => {
+    const savedBooking = localStorage.getItem("draftBooking");
+    if (savedBooking) {
+      return JSON.parse(savedBooking);
+    }
+    return {
+      name: "",
+      email: "",
+      gender: "",
+      phoneNo: "",
+      studentFees: "",
+      seatType: "",
+      seatNo: "",
+      lockerFees: "",
+      lockerNo: "",
+      startDate: "",
+      endDate: "",
+      status: ""
+    };
+  };
+
+  const [booking, setBooking] = useState(getInitialBookingState);
 
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -39,6 +47,11 @@ export default function BookingForm({ students, setStudents }) {
       }));
     }
   }, [search]);
+
+  // Save booking data to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("draftBooking", JSON.stringify(booking));
+  }, [booking]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +80,7 @@ export default function BookingForm({ students, setStudents }) {
 
       const updatedStudents = [...students, savedStudent];
       localStorage.setItem("students", JSON.stringify(updatedStudents));
+      localStorage.removeItem("draftBooking"); // Clear draft after successful submit
 
       setSuccess(true);
       setTimeout(() => {
