@@ -1,55 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 .login-wrapper {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #121212;
+  /* Premium animated gradient background */
+  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #020617, #312e81);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+  position: relative;
 }
 
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Subtle background glowing orbs */
+.login-wrapper::before,
+.login-wrapper::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 1;
+  opacity: 0.6;
+  animation: float 10s infinite ease-in-out alternate;
+}
+
+.login-wrapper::before {
+  width: 400px;
+  height: 400px;
+  background: #3b82f6;
+  top: -100px;
+  left: -150px;
+}
+
+.login-wrapper::after {
+  width: 500px;
+  height: 500px;
+  background: #8b5cf6;
+  bottom: -150px;
+  right: -150px;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 40px) scale(1.1); }
+}
+
+/* Glassmorphism Card */
 .login-card {
   width: 90%;
-  max-width: 360px;
-  padding: 25px;
-  background: #1e1e1e;
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+  max-width: 420px;
+  padding: 45px 35px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   text-align: center;
+  position: relative;
+  z-index: 10;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .login-card h2 {
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 4px 15px rgba(167, 139, 250, 0.3);
 }
 
 .login-card input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  background: #2c2c2c;
-  border: 1px solid #444;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
-  border-radius: 6px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .login-card input::placeholder {
-  color: #aaa;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+  transform: translateY(-2px);
 }
 
 .login-card button {
   width: 100%;
-  padding: 12px;
-  background: #1877f2;
+  padding: 16px;
+  margin-top: 15px;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   color: #ffffff;
   border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  font-weight: 500;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-card button::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.6s ease;
+}
+
+.login-card button:hover::before {
+  left: 100%;
 }
 
 .login-card button:hover {
-  background: #166fe5;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.5);
+}
+
+.login-card button:active {
+  transform: translateY(1px);
 }
 
 .password-input-container {
@@ -57,21 +161,44 @@
   width: 100%;
 }
 
+.password-input-container input {
+  margin-bottom: 25px;
+}
+
 .toggle-password-btn {
   position: absolute;
-  right: 10px;
-  top: 50%;
+  right: 18px;
+  top: calc(50% - 12px); /* Centered vertically relative to the input */
   transform: translateY(-50%);
   background: transparent !important;
-  color: #888 !important;
-  border: none;
+  color: #94a3b8 !important;
+  border: none !important;
+  box-shadow: none !important;
   padding: 0 !important;
-  margin: 0;
+  margin: 0 !important;
   width: auto !important;
-  font-size: 0.9rem !important;
+  font-size: 0.95rem !important;
+  font-weight: 500;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .toggle-password-btn:hover {
-  color: #ccc !important;
+  color: #ffffff !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Scrollbar styling for a cleaner look if needed */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
