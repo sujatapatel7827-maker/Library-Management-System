@@ -162,12 +162,12 @@
   margin-bottom: 25px;
 }
 
-.password-input-container input {
+.login-card .password-input-container input {
   margin-bottom: 0;
   padding-right: 45px; /* Leave space for the eye icon */
 }
 
-.toggle-password-btn {
+.login-card .toggle-password-btn {
   position: absolute;
   right: 18px;
   top: 50%; /* Center exactly in the input */
@@ -188,7 +188,7 @@
   transition: color 0.3s ease;
 }
 
-.toggle-password-btn:hover {
+.login-card .toggle-password-btn:hover {
   color: #ffffff !important;
   transform: translateY(-50%) !important;
 }
