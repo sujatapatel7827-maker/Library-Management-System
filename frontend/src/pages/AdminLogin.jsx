@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./AdminLogin.css";
 
 export default function AdminLogin() {
@@ -72,7 +73,7 @@ export default function AdminLogin() {
             onClick={() => setShowPassword(!showPassword)}
             type="button"
           >
-            {showPassword ? "Hide" : "Show"}
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
           </button>
         </div>
 

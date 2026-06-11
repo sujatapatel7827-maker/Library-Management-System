@@ -159,16 +159,18 @@
 .password-input-container {
   position: relative;
   width: 100%;
+  margin-bottom: 25px;
 }
 
 .password-input-container input {
-  margin-bottom: 25px;
+  margin-bottom: 0;
+  padding-right: 45px; /* Leave space for the eye icon */
 }
 
 .toggle-password-btn {
   position: absolute;
   right: 18px;
-  top: calc(50% - 12px); /* Centered vertically relative to the input */
+  top: 50%; /* Center exactly in the input */
   transform: translateY(-50%);
   background: transparent !important;
   color: #94a3b8 !important;
@@ -177,7 +179,10 @@
   padding: 0 !important;
   margin: 0 !important;
   width: auto !important;
-  font-size: 0.95rem !important;
+  font-size: 1.2rem !important; /* Larger font for icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
   cursor: pointer;
   transition: color 0.3s ease;
