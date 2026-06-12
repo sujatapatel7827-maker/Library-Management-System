@@ -34,8 +34,8 @@ export default function StudentCorrection({ students }) {
     <div className="student-correction-wrapper">
       <h1 className="page-heading">Student Records Management</h1>
 
-      <div className="search-container" style={{ marginBottom: "25px", justifyContent: "center" }}>
-        <FaSearch className="search-icon" style={{ left: "calc(50% - 130px)" }} />
+      <div className="search-container" style={{ marginBottom: "25px", width: "900px", maxWidth: "100%", justifyContent: "flex-start" }}>
+        <FaSearch className="search-icon" style={{ left: "14px" }} />
         <input
           type="text"
           placeholder="Search Name or Phone..."
