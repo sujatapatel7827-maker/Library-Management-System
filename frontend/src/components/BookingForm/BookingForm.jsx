@@ -174,14 +174,16 @@ export default function BookingForm({ students, setStudents }) {
               <option value="Night">Night</option>
             </select>
 
-            <input
-              placeholder="Seat No"
-              value={booking.seatNo}
-              onChange={(e) =>
-                setBooking({ ...booking, seatNo: e.target.value })
-              }
-              required
-            />
+            {booking.seatType === "Reserved" && (
+              <input
+                placeholder="Seat No"
+                value={booking.seatNo}
+                onChange={(e) =>
+                  setBooking({ ...booking, seatNo: e.target.value })
+                }
+                required
+              />
+            )}
 
             <input
               type="number"
