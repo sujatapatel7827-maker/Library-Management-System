@@ -87,7 +87,7 @@ export default function BookingForm({ students, setStudents }) {
 
     } catch (error) {
       console.error("Booking failed:", error);
-      const message = error.response?.data?.message || "Data save nahi hua. Seat/Locker check constraint check karein.";
+      const message = error.response?.data?.message || "Data save nahi hua. Seat check constraint check karein.";
       setErrorMsg(message);
     }
   };
