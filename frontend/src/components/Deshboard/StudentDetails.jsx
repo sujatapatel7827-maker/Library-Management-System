@@ -17,9 +17,9 @@ export default function StudentDetails({ students }) {
     filter === "All"
       ? students
       : students.filter(
-          (s) =>
-            s.seatType && s.seatType.toLowerCase() === filter.toLowerCase(),
-        );
+        (s) =>
+          s.seatType && s.seatType.toLowerCase() === filter.toLowerCase(),
+      );
 
   if (searchQuery) {
     const terms = searchQuery.toLowerCase().split(/[\s,]+/).filter(Boolean);
@@ -27,7 +27,6 @@ export default function StudentDetails({ students }) {
       terms.every(term =>
         s.name?.toLowerCase().includes(term) ||
         s.phoneNo?.includes(term) ||
-        s.seatNo?.toString().includes(term) ||
         s.regNo?.toString().includes(term)
       )
     );

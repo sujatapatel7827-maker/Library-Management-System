@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import "./Dashboard.css";
+import "./StudentDetails.css";
 
 export default function StudentCorrection({ students }) {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
   if (!students || students.length === 0) {
     return (
@@ -12,10 +16,42 @@ export default function StudentCorrection({ students }) {
     );
   }
 
+  const filteredStudents = searchQuery
+    ? students.filter(
+        (s) => {
+          const terms = searchQuery.toLowerCase().split(/[\s,]+/).filter(Boolean);
+          return terms.every(term =>
+            s.name?.toLowerCase().includes(term) ||
+            s.phoneNo?.includes(term) ||
+            s.seatNo?.toString().includes(term) ||
+            s.regNo?.toString().includes(term)
+          );
+        }
+      )
+    : students;
+
   return (
     <div className="student-correction-wrapper">
       <h1 className="page-heading">Student Records Management</h1>
-      {students.map((s) => (
+
+      <div className="search-container" style={{ marginBottom: "25px", justifyContent: "center" }}>
+        <FaSearch className="search-icon" style={{ left: "calc(50% - 130px)" }} />
+        <input
+          type="text"
+          placeholder="Search Name or Phone..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
+          style={{ width: "280px" }}
+        />
+      </div>
+
+      {filteredStudents.length === 0 ? (
+        <p style={{ color: "#9ca3af", textAlign: "center", fontSize: "16px" }}>
+          No records match your search.
+        </p>
+      ) : (
+        filteredStudents.map((s) => (
         <div className="student-card horizontal" key={s.id}>
 
           {/* LEFT SIDE : STUDENT INFO */}
