@@ -22,12 +22,14 @@ export default function StudentDetails({ students }) {
         );
 
   if (searchQuery) {
-    filteredStudents = filteredStudents.filter(
-      (s) =>
-        s.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        s.phoneNo?.includes(searchQuery) ||
-        s.seatNo?.toString().includes(searchQuery) ||
-        s.regNo?.toString().includes(searchQuery)
+    const terms = searchQuery.toLowerCase().split(/[\s,]+/).filter(Boolean);
+    filteredStudents = filteredStudents.filter((s) =>
+      terms.every(term =>
+        s.name?.toLowerCase().includes(term) ||
+        s.phoneNo?.includes(term) ||
+        s.seatNo?.toString().includes(term) ||
+        s.regNo?.toString().includes(term)
+      )
     );
   }
 
