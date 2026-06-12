@@ -132,6 +132,15 @@ export default function UpdateStudent({ students, setStudents }) {
         )}
 
         <input
+          type="number"
+          placeholder="Locker Fees"
+          value={data.lockerFees || ""}
+          onChange={(e) =>
+            setData({ ...data, lockerFees: e.target.value })
+          }
+        />
+
+        <input
           type="date"
           value={data.startDate}
           onChange={(e) =>

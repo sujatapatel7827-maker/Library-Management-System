@@ -47,6 +47,10 @@ if (paidFees >= TOTAL_FEES) status = "Paid";
             <p><b>Seat No:</b> {student.seatNo}</p>
           )}
 
+          {student.lockerFees && (
+            <p><b>Locker Fees:</b> ₹{student.lockerFees}</p>
+          )}
+
           {/* FEES SECTION */}
           <hr />
 

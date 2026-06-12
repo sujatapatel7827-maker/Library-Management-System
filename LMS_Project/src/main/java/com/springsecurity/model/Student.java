@@ -14,13 +14,14 @@ public class Student {
     private String studentFees;
     private String seatType;
     private String seatNo;
+    private String lockerFees;
     private String status;
     private String startDate;
     private String endDate;
 
     public Student() {}
 
-    public Student(Long id, String name, String gender, String phoneNo, String studentFees, String seatType, String seatNo, String status, String startDate, String endDate) {
+    public Student(Long id, String name, String gender, String phoneNo, String studentFees, String seatType, String seatNo, String lockerFees, String status, String startDate, String endDate) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -28,6 +29,7 @@ public class Student {
         this.studentFees = studentFees;
         this.seatType = seatType;
         this.seatNo = seatNo;
+        this.lockerFees = lockerFees;
         this.status = status;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -47,6 +49,8 @@ public class Student {
     public void setSeatType(String seatType) { this.seatType = seatType; }
     public String getSeatNo() { return seatNo; }
     public void setSeatNo(String seatNo) { this.seatNo = seatNo; }
+    public String getLockerFees() { return lockerFees; }
+    public void setLockerFees(String lockerFees) { this.lockerFees = lockerFees; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
     public String getStartDate() { return startDate; }

@@ -21,6 +21,7 @@ export default function BookingForm({ students, setStudents }) {
       studentFees: "",
       seatType: "",
       seatNo: "",
+      lockerFees: "",
       startDate: "",
       endDate: "",
       status: ""
@@ -180,6 +181,15 @@ export default function BookingForm({ students, setStudents }) {
                 setBooking({ ...booking, seatNo: e.target.value })
               }
               required
+            />
+
+            <input
+              type="number"
+              placeholder="Locker Fees"
+              value={booking.lockerFees}
+              onChange={(e) =>
+                setBooking({ ...booking, lockerFees: e.target.value })
+              }
             />
 
             <div style={{textAlign: "left", color: "#aaa", fontSize: "14px", marginTop: "10px", marginBottom: "4px", paddingLeft: "4px"}}>Start Date</div>
