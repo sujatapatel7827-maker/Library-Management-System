@@ -5,13 +5,14 @@ import "./StudentDetails.css";
 export default function StudentDetails({ students }) {
   const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   if (!students || students.length === 0) {
     return <p style={{ color: "white", padding: "40px" }}>No students found</p>;
   }
 
   // 🔥 FILTER LOGIC
-  const filteredStudents =
+  let filteredStudents =
     filter === "All"
       ? students
       : students.filter(
@@ -19,21 +20,43 @@ export default function StudentDetails({ students }) {
             s.seatType && s.seatType.toLowerCase() === filter.toLowerCase(),
         );
 
+  if (searchQuery) {
+    filteredStudents = filteredStudents.filter(
+      (s) =>
+        s.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        s.phoneNo?.includes(searchQuery) ||
+        s.seatNo?.toString().includes(searchQuery) ||
+        s.regNo?.toString().includes(searchQuery)
+    );
+  }
+
   return (
     <div className="student-details-wrapper">
       <h2 className="page-title">Student Details</h2>
 
-      {/* 🔥 FILTER BUTTONS */}
+      {/* 🔥 FILTER & SEARCH BAR */}
       <div className="filter-bar">
-        {["All", "Reserved", "Floating", "Night"].map((type) => (
-          <button
-            key={type}
-            className={`filter-btn ${filter === type ? "active" : ""}`}
-            onClick={() => setFilter(type)}
-          >
-            {type}
-          </button>
-        ))}
+        <div className="filter-buttons">
+          {["All", "Reserved", "Floating", "Night"].map((type) => (
+            <button
+              key={type}
+              className={`filter-btn ${filter === type ? "active" : ""}`}
+              onClick={() => setFilter(type)}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search Name, Phone, Seat..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
       </div>
 
       <div className="table-wrapper">

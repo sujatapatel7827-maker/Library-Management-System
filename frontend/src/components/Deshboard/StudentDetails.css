@@ -88,8 +88,30 @@
 /* FILTER BAR */
 .filter-bar {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #374151;
+  background: #1f2937;
+  color: #e5e7eb;
+  font-size: 14px;
+  outline: none;
+  width: 250px;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #38bdf8;
 }
 
 .filter-btn {
