@@ -111,9 +111,9 @@ export default function StudentCorrection({ students }) {
               Delete
             </button>
           </div>
-
         </div>
-      ))}
+        ))
+      )}
     </div>
   );
 }
