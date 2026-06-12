@@ -30,14 +30,6 @@ export default function StudentCorrection({ students }) {
               <p><b>Seat No:</b> {s.seatNo}</p>
             )}
 
-            {s.lockerNo && (
-              <p><b>Locker No:</b> {s.lockerNo}</p>
-            )}
-
-            {s.lockerFees && (
-              <p><b>Locker Fees:</b> ₹{s.lockerFees}</p>
-            )}
-
             <p><b>Fees Paid:</b> ₹{s.studentFees}</p>
 
             <p>

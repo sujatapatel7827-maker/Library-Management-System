@@ -41,22 +41,18 @@ export default function SeatLayout({ students = [] }) {
       let status = "empty";
       let studentName = null;
       let studentId = null;
-      let studentEmail = null;
       let studentPhone = null;
       let seatType = null;
       let startDate = null;
       let endDate = null;
-      let lockerNo = null;
 
       if (student) {
         studentName = student.name;
         studentId = student.id;
-        studentEmail = student.email;
         studentPhone = student.phoneNo;
         seatType = student.seatType;
         startDate = student.startDate;
         endDate = student.endDate;
-        lockerNo = student.lockerNo;
 
         // Check if expiring in next 3 days
         const end = new Date(student.endDate + "T00:00:00");
@@ -74,12 +70,10 @@ export default function SeatLayout({ students = [] }) {
         status,
         studentName,
         studentId,
-        studentEmail,
         studentPhone,
         seatType,
         startDate,
-        endDate,
-        lockerNo
+        endDate
       };
     });
 
@@ -172,10 +166,8 @@ export default function SeatLayout({ students = [] }) {
             </div>
             <div className="modal-body">
               <p><b>Name:</b> {selectedSeat.studentName}</p>
-              <p><b>Email:</b> {selectedSeat.studentEmail || "Not Provided"}</p>
               <p><b>Phone:</b> {selectedSeat.studentPhone}</p>
               <p><b>Seat Type:</b> {selectedSeat.seatType}</p>
-              <p><b>Locker assigned:</b> {selectedSeat.lockerNo ? `Locker #${selectedSeat.lockerNo}` : "None"}</p>
               <p><b>Booking Start:</b> {selectedSeat.startDate}</p>
               <p><b>Booking End:</b> {selectedSeat.endDate}</p>
               <span className={`badge ${selectedSeat.status === "expiring" ? "expiring-badge" : "active-badge"}`}>

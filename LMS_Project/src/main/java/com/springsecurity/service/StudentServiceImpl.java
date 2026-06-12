@@ -36,9 +36,6 @@ public class StudentServiceImpl implements StudentService {
         validateNoBookingConflicts(student, null);
         Student savedStudent = studentRepository.save(student);
         
-        // Trigger email notification asynchronously/in fallback
-        emailService.sendBookingConfirmationEmail(savedStudent);
-        
         return savedStudent;
     }
 
@@ -99,21 +96,5 @@ public class StudentServiceImpl implements StudentService {
             }
         }
 
-        // 2. Check Locker Overlap
-        if (newStudent.getLockerNo() != null && !newStudent.getLockerNo().trim().isEmpty()) {
-            List<Student> overlappingLockers = studentRepository.findOverlappingLockers(
-                    newStudent.getLockerNo().trim(),
-                    newStudent.getStartDate().trim(),
-                    newStudent.getEndDate().trim(),
-                    excludeId
-            );
-
-            if (!overlappingLockers.isEmpty()) {
-                Student conflict = overlappingLockers.get(0);
-                throw new BookingConflictException("Locker " + newStudent.getLockerNo() + 
-                        " is already assigned to " + conflict.getName() + " from " + 
-                        conflict.getStartDate() + " to " + conflict.getEndDate());
-            }
-        }
     }
 }

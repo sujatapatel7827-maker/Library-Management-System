@@ -41,19 +41,10 @@ if (paidFees >= TOTAL_FEES) status = "Paid";
           <p><b>Name:</b> {student.name}</p>
           <p><b>Gender:</b> {student.gender}</p>
           <p><b>Mobile:</b> {student.phoneNo}</p>
-          <p><b>Email:</b> {student.email || "Not Provided"}</p>
 
           <p><b>Seat Type:</b> {student.seatType}</p>
           {student.seatNo && (
             <p><b>Seat No:</b> {student.seatNo}</p>
-          )}
-
-          {student.lockerNo && (
-            <p><b>Locker No:</b> {student.lockerNo}</p>
-          )}
-
-          {student.lockerFees && (
-            <p><b>Locker Fees:</b> ₹{student.lockerFees}</p>
           )}
 
           {/* FEES SECTION */}

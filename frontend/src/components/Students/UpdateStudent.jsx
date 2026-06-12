@@ -79,15 +79,6 @@ export default function UpdateStudent({ students, setStudents }) {
           }
         />
 
-        <input
-          placeholder="Email"
-          type="email"
-          value={data.email || ""}
-          onChange={(e) =>
-            setData({ ...data, email: e.target.value })
-          }
-        />
-
         <select
           value={data.gender}
           onChange={(e) =>
@@ -139,23 +130,6 @@ export default function UpdateStudent({ students, setStudents }) {
             }
           />
         )}
-
-        <input
-          placeholder="Locker No"
-          value={data.lockerNo || ""}
-          onChange={(e) =>
-            setData({ ...data, lockerNo: e.target.value })
-          }
-        />
-
-        <input
-          type="number"
-          placeholder="Locker Fees"
-          value={data.lockerFees || ""}
-          onChange={(e) =>
-            setData({ ...data, lockerFees: e.target.value })
-          }
-        />
 
         <input
           type="date"

@@ -35,8 +35,8 @@ export default function Home() {
 
               <div className="quick-card" onClick={() => navigate("/home/booking")}>
                 <div className="quick-card-icon icon-booking"><FaFileAlt /></div>
-                <h3>Seat &amp; Locker Booking</h3>
-                <p>Register new students, assign available seat numbers, lockers, and trigger automated email confirmations.</p>
+                <h3>Seat Booking</h3>
+                <p>Register new students and assign available seat numbers.</p>
                 <div className="quick-card-action">
                   <span>Open Booking Panel</span> <FaArrowRight />
                 </div>
@@ -99,7 +99,7 @@ export default function Home() {
                     <div className="status-item">
                       <p><b>Collision / Overlap Engine:</b></p>
                       <span className="status-badge-green">Online &amp; Validating</span>
-                      <p className="status-detail">Checks JPQL overlap constraints before creating or updating seats and lockers.</p>
+                      <p className="status-detail">Checks JPQL overlap constraints before creating or updating seats.</p>
                     </div>
                   </div>
                   <div className="modal-footer">

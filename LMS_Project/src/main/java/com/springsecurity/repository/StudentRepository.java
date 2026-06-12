@@ -18,11 +18,4 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
         @Param("excludeId") Long excludeId
     );
 
-    @Query("SELECT s FROM Student s WHERE s.lockerNo = :lockerNo AND s.lockerNo IS NOT NULL AND s.lockerNo <> '' AND s.startDate <= :endDate AND s.endDate >= :startDate AND (:excludeId IS NULL OR s.id <> :excludeId)")
-    List<Student> findOverlappingLockers(
-        @Param("lockerNo") String lockerNo,
-        @Param("startDate") String startDate,
-        @Param("endDate") String endDate,
-        @Param("excludeId") Long excludeId
-    );
 }

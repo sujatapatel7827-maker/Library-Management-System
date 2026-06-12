@@ -21,8 +21,6 @@ export default function BookingForm({ students, setStudents }) {
       studentFees: "",
       seatType: "",
       seatNo: "",
-      lockerFees: "",
-      lockerNo: "",
       startDate: "",
       endDate: "",
       status: ""
@@ -130,16 +128,6 @@ export default function BookingForm({ students, setStudents }) {
               required
             />
 
-            <input
-              type="email"
-              placeholder="Student Email"
-              value={booking.email}
-              onChange={(e) =>
-                setBooking({ ...booking, email: e.target.value })
-              }
-              required
-            />
-
             <select
               value={booking.gender}
               onChange={(e) =>
@@ -185,7 +173,6 @@ export default function BookingForm({ students, setStudents }) {
               <option value="Night">Night</option>
             </select>
 
-            {/*Always show seatNo */}
             <input
               placeholder="Seat No"
               value={booking.seatNo}
@@ -193,23 +180,6 @@ export default function BookingForm({ students, setStudents }) {
                 setBooking({ ...booking, seatNo: e.target.value })
               }
               required
-            />
-
-            <input
-              type="number"
-              placeholder="Locker Fees"
-              value={booking.lockerFees}
-              onChange={(e) =>
-                setBooking({ ...booking, lockerFees: e.target.value })
-              }
-            />
-
-            <input
-              placeholder="Locker Number"
-              value={booking.lockerNo}
-              onChange={(e) =>
-                setBooking({ ...booking, lockerNo: e.target.value })
-              }
             />
 
             <div style={{textAlign: "left", color: "#aaa", fontSize: "14px", marginTop: "10px", marginBottom: "4px", paddingLeft: "4px"}}>Start Date</div>

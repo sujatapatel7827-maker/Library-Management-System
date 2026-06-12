@@ -44,7 +44,7 @@ export default function Dashboard({ students = [] }) {
 
   // Calculate total active revenue
   const totalRevenue = activeStudents.reduce((acc, curr) => {
-    const fees = (Number(curr.studentFees) || 0) + (Number(curr.lockerFees) || 0);
+    const fees = (Number(curr.studentFees) || 0);
     return acc + fees;
   }, 0);
 
@@ -70,7 +70,7 @@ export default function Dashboard({ students = [] }) {
         try {
           const date = new Date(s.startDate);
           const monthName = months[date.getMonth()];
-          const fee = (Number(s.studentFees) || 0) + (Number(s.lockerFees) || 0);
+          const fee = (Number(s.studentFees) || 0);
           revenueMap[monthName] = (revenueMap[monthName] || 0) + fee;
         } catch (e) {}
       }
@@ -152,7 +152,7 @@ export default function Dashboard({ students = [] }) {
           <div className="card-info">
             <h4>Total Active Revenue</h4>
             <h3>₹{totalRevenue.toLocaleString()}</h3>
-            <p>Active Seat & Locker fees</p>
+            <p>Active Seat fees</p>
           </div>
         </div>
 
@@ -248,7 +248,6 @@ export default function Dashboard({ students = [] }) {
                 <tr>
                   <th>Student Name</th>
                   <th>Seat Details</th>
-                  <th>Locker details</th>
                   <th>Start Date</th>
                   <th>Expiry Date</th>
                   <th>Actions</th>
@@ -269,7 +268,6 @@ export default function Dashboard({ students = [] }) {
                         </div>
                       </td>
                       <td>Seat #{student.seatNo} ({student.seatType})</td>
-                      <td>{student.lockerNo ? `Locker #${student.lockerNo}` : "No Locker"}</td>
                       <td>{student.startDate}</td>
                       <td>
                         <span className={`expiry-tag ${diffDays <= 2 ? "critical" : "warning"}`}>
