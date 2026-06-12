@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import "./StudentDetails.css";
 
 export default function StudentDetails({ students }) {
@@ -49,9 +50,10 @@ export default function StudentDetails({ students }) {
         </div>
 
         <div className="search-container">
+          <FaSearch className="search-icon" />
           <input
             type="text"
-            placeholder="Search Name, Phone, Seat..."
+            placeholder="Search Name or Phone..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input"

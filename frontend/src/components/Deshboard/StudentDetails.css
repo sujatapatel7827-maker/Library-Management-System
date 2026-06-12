@@ -98,8 +98,21 @@
   gap: 10px;
 }
 
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
 .search-input {
-  padding: 8px 16px;
+  padding: 8px 16px 8px 36px;
   border-radius: 20px;
   border: 1px solid #374151;
   background: #1f2937;
