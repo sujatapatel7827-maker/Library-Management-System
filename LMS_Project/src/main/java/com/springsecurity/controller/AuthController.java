@@ -86,7 +86,12 @@ public class AuthController {
         try {
             if (adminRepository.findByUsername(request.getUsername()).isPresent()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(Map.of("message", "Username already exists"));
+                        .body(Map.of("message", "Username already exists. Please choose a different one."));
+            }
+
+            if (adminRepository.findByEmail(request.getEmail()).isPresent()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(Map.of("message", "This email is already registered. Please login or use a different email."));
             }
 
             // Generate 4 digit OTP
