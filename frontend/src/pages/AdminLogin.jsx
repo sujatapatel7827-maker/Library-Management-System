@@ -11,7 +11,6 @@ export default function AdminLogin() {
     fullName: "",
     email: "",
     mobileNumber: "",
-    username: "",
     password: "",
     confirmPassword: "",
     otpPreference: "email",
@@ -31,7 +30,7 @@ export default function AdminLogin() {
   };
 
   const handleLogin = async () => {
-    if (!data.username || !data.password) {
+    if (!data.email || !data.password) {
       setError("Please fill in all fields");
       return;
     }
@@ -39,13 +38,13 @@ export default function AdminLogin() {
 
     try {
       const response = await api.post("/api/auth/login", {
-        username: data.username,
+        username: data.email, // backend expects 'username'
         password: data.password
       });
       const token = response.data.token;
       localStorage.setItem("token", token);
       localStorage.setItem("isLogin", "true");
-      localStorage.setItem("username", data.username);
+      localStorage.setItem("username", data.email);
       navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
@@ -63,7 +62,7 @@ export default function AdminLogin() {
   };
 
   const handleRegister = async () => {
-    if (!data.fullName || !data.email || !data.username || !data.password || !data.confirmPassword) {
+    if (!data.fullName || !data.email || !data.password || !data.confirmPassword) {
       setError("Please fill all required fields (Mobile is optional).");
       return;
     }
@@ -82,7 +81,7 @@ export default function AdminLogin() {
         fullName: data.fullName,
         email: data.email,
         mobileNumber: data.mobileNumber,
-        username: data.username,
+        username: data.email, // Send email as username to backend
         password: data.password,
         otpPreference: data.otpPreference
       });
@@ -104,7 +103,7 @@ export default function AdminLogin() {
     setError(""); setSuccess(""); setLoading(true);
     try {
       const response = await api.post("/api/auth/verify-otp", {
-        username: data.username,
+        username: data.email, // backend uses username for identification
         otpCode: data.otpCode
       });
       setSuccess(response.data.message || "Account activated! You can now login.");
@@ -158,9 +157,8 @@ export default function AdminLogin() {
         ) : isRegistering ? (
           <>
             <input name="fullName" placeholder="Full Name" value={data.fullName} onChange={handleChange} disabled={loading} />
-            <input name="email" type="email" placeholder="Email" value={data.email} onChange={handleChange} disabled={loading} />
+            <input name="email" type="email" placeholder="Email Address" value={data.email} onChange={handleChange} disabled={loading} />
             <input name="mobileNumber" placeholder="Mobile Number (Optional)" value={data.mobileNumber} onChange={handleChange} disabled={loading} />
-            <input name="username" placeholder="Username" value={data.username} onChange={handleChange} disabled={loading} />
             
             <div className="password-input-container">
               <input type={showPassword ? "text" : "password"} name="password" placeholder="Password" value={data.password} onChange={handleChange} disabled={loading} />
@@ -196,7 +194,7 @@ export default function AdminLogin() {
           </>
         ) : (
           <>
-            <input name="username" placeholder="Username" value={data.username} onChange={handleChange} disabled={loading} />
+            <input name="email" type="email" placeholder="Email Address" value={data.email} onChange={handleChange} disabled={loading} />
             <div className="password-input-container">
               <input
                 type={showPassword ? "text" : "password"}
