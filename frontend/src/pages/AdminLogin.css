@@ -238,3 +238,23 @@
   margin-bottom: 0;
   accent-color: #8b5cf6;
 }
+
+.toggle-auth-mode {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.auth-link {
+  color: #60a5fa;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #a78bfa;
+  text-decoration: underline;
+}

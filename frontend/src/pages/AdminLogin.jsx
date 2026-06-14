@@ -150,8 +150,8 @@ export default function AdminLogin() {
             <button onClick={handleVerifyOtp} disabled={loading}>
               {loading ? "Verifying..." : "Verify & Activate"}
             </button>
-            <p className="toggle-auth-mode" onClick={() => setIsVerifyingOtp(false)}>
-              Back to Login
+            <p className="toggle-auth-mode">
+              <span className="auth-link" onClick={() => setIsVerifyingOtp(false)}>Back to Login</span>
             </p>
           </>
         ) : isRegistering ? (
@@ -188,8 +188,8 @@ export default function AdminLogin() {
             <button onClick={handleRegister} disabled={loading}>
               {loading ? "Registering..." : "Register"}
             </button>
-            <p className="toggle-auth-mode" onClick={switchMode}>
-              Already have an account? Login here
+            <p className="toggle-auth-mode">
+              Already have an account? <span className="auth-link" onClick={switchMode}>Login here</span>
             </p>
           </>
         ) : (
@@ -212,8 +212,8 @@ export default function AdminLogin() {
             <button onClick={handleLogin} disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>
-            <p className="toggle-auth-mode" onClick={switchMode}>
-              Don't have an account? Register here
+            <p className="toggle-auth-mode">
+              Don't have an account? <span className="auth-link" onClick={switchMode}>Register here</span>
             </p>
           </>
         )}
