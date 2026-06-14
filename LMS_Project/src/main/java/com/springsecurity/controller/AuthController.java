@@ -3,6 +3,8 @@ package com.springsecurity.controller;
 import com.springsecurity.config.JwtUtils;
 import com.springsecurity.dto.AuthRequest;
 import com.springsecurity.dto.AuthResponse;
+import com.springsecurity.model.Admin;
+import com.springsecurity.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -27,6 +30,12 @@ public class AuthController {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private AdminRepository adminRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
@@ -45,6 +54,26 @@ public class AuthController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("message", "Login failed: " + e.getMessage()));
+        }
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody AuthRequest authRequest) {
+        try {
+            if (adminRepository.findByUsername(authRequest.getUsername()).isPresent()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(Map.of("message", "Username already exists"));
+            }
+
+            Admin admin = new Admin();
+            admin.setUsername(authRequest.getUsername());
+            admin.setPassword(passwordEncoder.encode(authRequest.getPassword()));
+            adminRepository.save(admin);
+
+            return ResponseEntity.ok(Map.of("message", "Admin registered successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Registration failed: " + e.getMessage()));
         }
     }
 }
