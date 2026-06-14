@@ -250,6 +250,79 @@ body.light .nav-links a.active {
   color: #fff;
 }
 
+/* ===== USER PROFILE SECTION ===== */
+.user-profile-container {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #38bdf8, #c026d3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.user-name-text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #ff4757;
+}
+
+body.light .user-profile-container {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light .user-name-text {
+  color: #111827;
+}
+
+body.light .logout-btn {
+  color: #e11d48;
+}
+
+body.light .logout-btn:hover {
+  color: #be123c;
+}
+
 /* ========================================= */
 /*       RESPONSIVE DESIGN (TABLET & PHONE)  */
 /* ========================================= */
@@ -321,5 +394,36 @@ body.light .nav-links a.active {
   }
   .sub-links {
     display: contents !important; /* Makes children part of the parent flex container */
+  }
+  
+  .user-profile-container {
+    padding: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    margin-left: auto !important;
+    padding-left: 10px !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  body.light .user-profile-container {
+    border-left: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .user-avatar {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 14px !important;
+  }
+  
+  .user-name-text {
+    display: none !important;
+  }
+  
+  .logout-btn {
+    font-size: 0 !important;
+  }
+  
+  .logout-icon {
+    font-size: 18px !important;
   }
 }

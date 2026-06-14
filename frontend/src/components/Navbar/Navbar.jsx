@@ -1,11 +1,22 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Navbar.css";
-import { FaHome, FaChartBar, FaUser, FaList, FaFileAlt, FaChair, FaSun, FaMoon } from "react-icons/fa";
+import { FaHome, FaChartBar, FaUser, FaList, FaFileAlt, FaChair, FaSun, FaMoon, FaSignOutAlt } from "react-icons/fa";
 
 export default function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+
+  const username = localStorage.getItem("username") || "Admin";
+  const firstLetter = username.charAt(0).toUpperCase();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("username");
+    navigate("/");
+  };
 
   useEffect(() => {
     document.body.className = theme;
@@ -58,6 +69,16 @@ export default function Navbar() {
         <NavLink to="/home/seats">
           <span className="nav-text">Seat Layout</span>  <FaChair className="nav-icon" />
         </NavLink>
+      </div>
+
+      <div className="user-profile-container">
+        <div className="user-avatar">{firstLetter}</div>
+        <div className="user-details">
+          <span className="user-name-text">{username}</span>
+          <button className="logout-btn" onClick={handleLogout}>
+            <FaSignOutAlt className="logout-icon" /> Logout
+          </button>
+        </div>
       </div>
     </div>
   );

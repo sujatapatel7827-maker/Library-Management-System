@@ -30,6 +30,7 @@ export default function AdminLogin() {
       const token = response.data.token;
       localStorage.setItem("token", token);
       localStorage.setItem("isLogin", "true");
+      localStorage.setItem("username", data.username);
       navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
