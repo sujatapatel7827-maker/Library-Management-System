@@ -207,3 +207,34 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
+
+.otp-preference-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.otp-preference-box p {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.otp-preference-box label {
+  display: inline-block;
+  color: #ccc;
+  margin-right: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.otp-preference-box input[type="radio"] {
+  width: auto;
+  margin-right: 8px;
+  margin-bottom: 0;
+  accent-color: #8b5cf6;
+}
