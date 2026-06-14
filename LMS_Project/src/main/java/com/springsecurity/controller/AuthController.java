@@ -40,6 +40,12 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
         try {
+            // Check if user exists first to give a helpful message
+            if (adminRepository.findByUsername(authRequest.getUsername()).isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Map.of("message", "User not found. Please register first."));
+            }
+
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
             );
@@ -50,7 +56,7 @@ public class AuthController {
             return ResponseEntity.ok(new AuthResponse(jwt));
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of("message", "Invalid Username or Password"));
+                    .body(Map.of("message", "Incorrect password. Please try again."));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Map.of("message", "Login failed: " + e.getMessage()));
