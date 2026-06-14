@@ -8,7 +8,6 @@ export default function AdminLogin() {
   const navigate = useNavigate();
 
   const [data, setData] = useState({
-    fullName: "",
     username: "",
     email: "",
     mobileNumber: "",
@@ -63,7 +62,7 @@ export default function AdminLogin() {
   };
 
   const handleRegister = async () => {
-    if (!data.fullName || !data.username || !data.email || !data.password || !data.confirmPassword) {
+    if (!data.username || !data.email || !data.password || !data.confirmPassword) {
       setError("Please fill all required fields (Mobile is optional).");
       return;
     }
@@ -79,7 +78,6 @@ export default function AdminLogin() {
     setError(""); setSuccess(""); setLoading(true);
     try {
       const response = await api.post("/api/auth/register", {
-        fullName: data.fullName,
         username: data.username,
         email: data.email,
         mobileNumber: data.mobileNumber,
@@ -157,7 +155,6 @@ export default function AdminLogin() {
           </>
         ) : isRegistering ? (
           <>
-            <input name="fullName" placeholder="Full Name" value={data.fullName} onChange={handleChange} disabled={loading} />
             <input name="username" placeholder="UserName" value={data.username} onChange={handleChange} disabled={loading} />
             <input name="email" type="email" placeholder="Email Address" value={data.email} onChange={handleChange} disabled={loading} />
             <input name="mobileNumber" placeholder="Mobile Number (Optional)" value={data.mobileNumber} onChange={handleChange} disabled={loading} />
