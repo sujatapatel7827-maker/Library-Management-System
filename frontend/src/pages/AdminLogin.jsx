@@ -151,7 +151,7 @@ export default function AdminLogin() {
               {loading ? "Verifying..." : "Verify & Activate"}
             </button>
             <p className="toggle-auth-mode">
-              <span className="auth-link" onClick={() => setIsVerifyingOtp(false)}>Back to Login</span>
+              <span className="auth-link" onClick={() => { setIsVerifyingOtp(false); setError(""); setSuccess(""); }}>Back to Login</span>
             </p>
           </>
         ) : isRegistering ? (

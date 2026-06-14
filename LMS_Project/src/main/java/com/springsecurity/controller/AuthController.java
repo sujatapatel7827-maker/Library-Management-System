@@ -54,8 +54,14 @@ public class AuthController {
             }
 
             if (!admin.isActive()) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                        .body(Map.of("message", "Account is not active. Please verify your OTP."));
+                // Backward compatibility: If it's an old account with no OTP code, activate it automatically
+                if (admin.getOtpCode() == null) {
+                    admin.setActive(true);
+                    adminRepository.save(admin);
+                } else {
+                    return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                            .body(Map.of("message", "Account is not active. Please verify your OTP."));
+                }
             }
 
             authenticationManager.authenticate(
