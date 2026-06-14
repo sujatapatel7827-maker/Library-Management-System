@@ -84,28 +84,41 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         try {
-            if (adminRepository.findByUsername(request.getUsername()).isPresent()) {
+            Admin existingByUsername = adminRepository.findByUsername(request.getUsername()).orElse(null);
+            if (existingByUsername != null && existingByUsername.isActive()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(Map.of("message", "Username already exists. Please choose a different one."));
             }
 
-            if (adminRepository.findByEmail(request.getEmail()).isPresent()) {
+            Admin existingByEmail = adminRepository.findByEmail(request.getEmail()).orElse(null);
+            if (existingByEmail != null && existingByEmail.isActive()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(Map.of("message", "This email is already registered. Please login or use a different email."));
+            }
+
+            Admin adminToSave;
+            if (existingByUsername != null) {
+                adminToSave = existingByUsername;
+                if (existingByEmail != null && !existingByEmail.getId().equals(existingByUsername.getId())) {
+                    adminRepository.delete(existingByEmail); // Clean up conflicting inactive account
+                }
+            } else if (existingByEmail != null) {
+                adminToSave = existingByEmail;
+            } else {
+                adminToSave = new Admin();
             }
 
             // Generate 4 digit OTP
             String otp = String.format("%04d", new java.util.Random().nextInt(10000));
 
-            Admin admin = new Admin();
-            admin.setUsername(request.getUsername());
-            admin.setPassword(passwordEncoder.encode(request.getPassword()));
-            admin.setFullName(request.getFullName());
-            admin.setEmail(request.getEmail());
-            admin.setMobileNumber(request.getMobileNumber());
-            admin.setActive(false);
-            admin.setOtpCode(otp);
-            adminRepository.save(admin);
+            adminToSave.setUsername(request.getUsername());
+            adminToSave.setPassword(passwordEncoder.encode(request.getPassword()));
+            adminToSave.setFullName(request.getFullName());
+            adminToSave.setEmail(request.getEmail());
+            adminToSave.setMobileNumber(request.getMobileNumber());
+            adminToSave.setActive(false);
+            adminToSave.setOtpCode(otp);
+            adminRepository.save(adminToSave);
 
             if ("mobile".equalsIgnoreCase(request.getOtpPreference())) {
                 System.out.println("====== SMS OTP (Simulated) ======");
