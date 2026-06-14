@@ -57,10 +57,8 @@
 /* Glassmorphism Card */
 .login-card {
   width: 90%;
-  max-width: 420px;
-  padding: 35px 30px;
-  max-height: 85vh;
-  overflow-y: auto;
+  max-width: 400px;
+  padding: 25px 25px;
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -79,9 +77,9 @@
 }
 
 .login-card h2 {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   color: #ffffff;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 1px;
   background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
@@ -92,13 +90,13 @@
 
 .login-card input {
   width: 100%;
-  padding: 14px 18px;
-  margin-bottom: 15px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #fff;
-  border-radius: 12px;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
   font-family: inherit;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -119,13 +117,13 @@
 
 .login-card button {
   width: 100%;
-  padding: 14px;
-  margin-top: 10px;
+  padding: 10px;
+  margin-top: 5px;
   background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   color: #ffffff;
   border: none;
-  border-radius: 12px;
-  font-size: 1.15rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
   font-weight: 600;
   font-family: inherit;
   letter-spacing: 0.5px;
@@ -161,7 +159,7 @@
 .password-input-container {
   position: relative;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .login-card .password-input-container input {
@@ -181,7 +179,7 @@
   padding: 0 !important;
   margin: 0 !important;
   width: auto !important;
-  font-size: 1.2rem !important; /* Larger font for icon */
+  font-size: 1rem !important; /* Adjusted font size for icon */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,16 +211,16 @@
 .otp-preference-box {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 15px;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
 .otp-preference-box p {
   color: #fff;
-  margin-bottom: 10px;
-  font-size: 0.95rem;
+  margin-bottom: 5px;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -230,7 +228,7 @@
   display: inline-block;
   color: #ccc;
   margin-right: 20px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 
