@@ -27,6 +27,8 @@ export default function AdminLogin() {
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    if (error) setError("");
+    if (success) setSuccess("");
   };
 
   const handleLogin = async () => {
