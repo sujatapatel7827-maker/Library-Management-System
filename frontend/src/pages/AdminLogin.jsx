@@ -50,7 +50,9 @@ export default function AdminLogin() {
       navigate("/home");
     } catch (err) {
       console.error("Login failed:", err);
-      if (err.response?.status === 403) {
+      if (!err.response) {
+         setError("Unable to connect to server. Please ensure the backend is running.");
+      } else if (err.response?.status === 403) {
          // Account inactive, needs OTP
          setIsVerifyingOtp(true);
          setError("");
@@ -90,7 +92,11 @@ export default function AdminLogin() {
       setIsVerifyingOtp(true); // Move to OTP screen
     } catch (err) {
       console.error("Registration failed:", err);
-      setError(err.response?.data?.message || "Registration Failed");
+      if (!err.response) {
+        setError("Unable to connect to server. Please ensure the backend is running.");
+      } else {
+        setError(err.response?.data?.message || "Registration Failed");
+      }
     } finally {
       setLoading(false);
     }
@@ -113,7 +119,11 @@ export default function AdminLogin() {
       setData({ ...data, otpCode: "", password: "", confirmPassword: "" }); // Clear sensitive fields
     } catch (err) {
       console.error("Verification failed:", err);
-      setError(err.response?.data?.message || "Invalid OTP");
+      if (!err.response) {
+        setError("Unable to connect to server. Please ensure the backend is running.");
+      } else {
+        setError(err.response?.data?.message || "Invalid OTP");
+      }
     } finally {
       setLoading(false);
     }
